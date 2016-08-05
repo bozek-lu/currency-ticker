@@ -11,4 +11,5 @@ import Foundation
 protocol DetailViewDataProviderProtocol {
     weak var delegate: DetailViewDataProviderDelegateProtocol? {get set}
     init(currency: CurrencyEntity, downloadManager: DownloadManagerProtocol, delegate: DetailViewDataProviderDelegateProtocol)
+    func fetchValues(startDate: String?, endDate: String?)
 }

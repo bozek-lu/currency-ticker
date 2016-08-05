@@ -24,6 +24,9 @@
 		89309B431D539AD8002E03CC /* DetailViewDataProviderDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89309B421D539AD8002E03CC /* DetailViewDataProviderDelegateProtocol.swift */; };
 		89309B461D53A553002E03CC /* CurrencyDayValue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89309B441D53A553002E03CC /* CurrencyDayValue+CoreDataProperties.swift */; };
 		89309B471D53A553002E03CC /* CurrencyDayValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89309B451D53A553002E03CC /* CurrencyDayValue.swift */; };
+		89483AC61D548E31000EF899 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89483AC51D548E31000EF899 /* Constants.swift */; };
+		89483AC81D549359000EF899 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89483AC71D549359000EF899 /* SettingsViewController.swift */; };
+		89483ACC1D54C863000EF899 /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89483ACB1D54C863000EF899 /* ProgressHud.swift */; };
 		89E263351D523180008E03D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E263341D523180008E03D5 /* AppDelegate.swift */; };
 		89E263371D523180008E03D5 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E263361D523180008E03D5 /* MasterViewController.swift */; };
 		89E263391D523180008E03D5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E263381D523180008E03D5 /* DetailViewController.swift */; };
@@ -49,6 +52,9 @@
 		89309B421D539AD8002E03CC /* DetailViewDataProviderDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewDataProviderDelegateProtocol.swift; sourceTree = "<group>"; };
 		89309B441D53A553002E03CC /* CurrencyDayValue+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CurrencyDayValue+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		89309B451D53A553002E03CC /* CurrencyDayValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyDayValue.swift; sourceTree = "<group>"; };
+		89483AC51D548E31000EF899 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		89483AC71D549359000EF899 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		89483ACB1D54C863000EF899 /* ProgressHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHud.swift; sourceTree = "<group>"; };
 		89E263311D52317F008E03D5 /* currency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = currency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89E263341D523180008E03D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89E263361D523180008E03D5 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +142,15 @@
 			name = DetailView;
 			sourceTree = "<group>";
 		};
+		89483ACA1D54C84A000EF899 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				89483AC51D548E31000EF899 /* Constants.swift */,
+				89483ACB1D54C863000EF899 /* ProgressHud.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		89E263281D52317F008E03D5 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +172,7 @@
 		89E263331D523180008E03D5 /* currency */ = {
 			isa = PBXGroup;
 			children = (
+				89483ACA1D54C84A000EF899 /* Supporting Files */,
 				891BE8C81D537AB600839983 /* DetailView */,
 				891BE8BB1D534B7300839983 /* MasterView */,
 				891BE8A61D53382300839983 /* Model */,
@@ -166,6 +182,7 @@
 				89E2633D1D523180008E03D5 /* Assets.xcassets */,
 				89E2633F1D523180008E03D5 /* LaunchScreen.storyboard */,
 				89E263421D523180008E03D5 /* Info.plist */,
+				89483AC71D549359000EF899 /* SettingsViewController.swift */,
 				891BE8991D5315B100839983 /* currency.xcdatamodeld */,
 				89309B401D5388AC002E03CC /* Extensions.swift */,
 			);
@@ -295,7 +312,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				891BE89B1D5315B100839983 /* currency.xcdatamodeld in Sources */,
+				89483AC61D548E31000EF899 /* Constants.swift in Sources */,
 				89E263391D523180008E03D5 /* DetailViewController.swift in Sources */,
+				89483AC81D549359000EF899 /* SettingsViewController.swift in Sources */,
 				891BE8BF1D534BF500839983 /* DownloadManager.swift in Sources */,
 				891BE8B81D5339E500839983 /* CurrencyInfo.swift in Sources */,
 				891BE8CC1D537B2700839983 /* DetailViewDataProviderProtocol.swift in Sources */,
@@ -305,6 +324,7 @@
 				891BE8C31D534CCE00839983 /* CurrencyDayValueInfo.swift in Sources */,
 				891BE8C61D53605500839983 /* CurrencyEntity+CoreDataProperties.swift in Sources */,
 				891BE8BA1D533FCE00839983 /* MasterViewDataProvider.swift in Sources */,
+				89483ACC1D54C863000EF899 /* ProgressHud.swift in Sources */,
 				89309B431D539AD8002E03CC /* DetailViewDataProviderDelegateProtocol.swift in Sources */,
 				891BE8C11D534C1500839983 /* DownloadManagerProtocol.swift in Sources */,
 				89309B461D53A553002E03CC /* CurrencyDayValue+CoreDataProperties.swift in Sources */,

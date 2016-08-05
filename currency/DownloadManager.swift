@@ -27,37 +27,6 @@ struct QueryConst {
 
 class DownloadManager: NSObject, DownloadManagerProtocol {
     
-    static func historicalData(from: NSDate, to: NSDate, currency: String) -> NSDictionary? {
-        
-        return nil
-    }
-    
-//    static func query(statement:String ) -> NSDictionary? {
-//        
-//        let escapedStatement = statement.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
-//        let query = "\(QueryConst.prefix)\(escapedStatement!)"
-//        
-//        var results:NSDictionary? = nil
-//        var jsonData: NSData?
-//        
-//        Alamofire.request(.GET, query)
-//            .validate()
-//            .responseJSON { response in
-//                
-//        }
-//        
-//        do {
-//            jsonData = try NSData(contentsOfURL: NSURL(string: query)!, options: NSDataReadingOptions.DataReadingMappedIfSafe)
-//        } catch {
-//            print(error)
-//            return nil
-//        }
-//        
-//        results = try! NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-//        
-//        return results
-//    }
-    
     func getCurrencyData(from: String, to: String, currency: String, onCompletion: CurrencyDetailsResponse) -> Void {
 //        select * from yahoo.finance.historicaldata where symbol = "EUR=X" and startDate = "2009-09-11" and endDate = "2010-03-10"
         let query = QueryConst.selectAllFromHistoricalWhere + QueryConst.symbol + "\"" + currency + "=X\"" + QueryConst.andStartDate + "\"" + from + "\"" + QueryConst.andEndDate + "\"" + to + "\""
@@ -68,7 +37,6 @@ class DownloadManager: NSObject, DownloadManagerProtocol {
         Alamofire.request(.GET, fixed)
             .validate()
             .responseJSON { response in
-                print(response)
                 
                 var dict: Dictionary<NSString, AnyObject>?
                 var JSONerror: NSError?
@@ -107,20 +75,20 @@ class DownloadManager: NSObject, DownloadManagerProtocol {
     }
     
     func parseCurrencyDetails(dict: Dictionary<NSString, AnyObject>) -> [CurrencyDayValueInfo] {
-        let query = dict["query"]
-        let results = query!["results"]
-        let resources = results!!["quote"] as! NSArray
-        
         var arr: [CurrencyDayValueInfo] = []
         
-        for resource in resources {
-            let name = resource["Symbol"] as! String
-            let date = resource["Date"] as! String
-            let rate = (resource["Adj_Close"] as! NSString).doubleValue
-            
-            arr.append(CurrencyDayValueInfo(name: name, date: date, rate: rate))
+        let query = dict["query"]
+        if query != nil && query!["count"] as! Int > 0 {
+            let results = query!["results"]
+            let resources = results!!["quote"] as! NSArray
+            for resource in resources {
+                let name = resource["Symbol"] as! String
+                let date = resource["Date"] as! String
+                let rate = (resource["Adj_Close"] as! NSString).doubleValue
+                
+                arr.append(CurrencyDayValueInfo(name: name, date: date, rate: rate))
+            }
         }
-        
         return arr
     }
     
@@ -133,11 +101,9 @@ class DownloadManager: NSObject, DownloadManagerProtocol {
         for resource in resources {
             let res = resource.valueForKey("resource") as! NSDictionary
             let fields = res.valueForKey("fields") as! NSDictionary
-            let code = fields["name"] as! String
+            let code = fields["symbol"] as! String
             
-            let index = code.endIndex.advancedBy(-3)
-            
-            let name = code.substringFromIndex(index)
+            let name = code[0...2]
             
             let mainRate = (fields["price"] as! NSString).doubleValue
             

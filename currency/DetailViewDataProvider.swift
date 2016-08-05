@@ -13,11 +13,7 @@ import Charts
 class DetailViewDataProvider: NSObject, DetailViewDataProviderProtocol {
     weak var currency: CurrencyEntity?
     weak var delegate: DetailViewDataProviderDelegateProtocol?
-    var currencyValues: [CurrencyDayValue]? {
-        didSet {
-            delegate?.setupChart(currencyValues!)
-        }
-    }
+    var currencyValues: [CurrencyDayValue]?
     
     var downloadManager: DownloadManagerProtocol?
     
@@ -35,15 +31,43 @@ class DetailViewDataProvider: NSObject, DetailViewDataProviderProtocol {
         self.delegate = delegate
         self.currency = currency
         self.downloadManager = downloadManager
-        if currency.currencyDayValue?.count == 0 {
-            fetchValues()
-        }
+//        if currency.currencyDayValue?.count == 0 {
+//            let defaults = NSUserDefaults.standardUserDefaults()
+//            let start = defaults.valueForKey(Const.startDateKey) as? String
+//            let end = defaults.valueForKey(Const.endDateKey) as? String
+//            if end != nil && start != nil {
+//                fetchValues(start!, endDate: end!)
+//            }
+//            
+//            fetchValues(nil, endDate: nil)
+//        }
     }
     
-    func fetchValues() {
+    func fetchValues(startDate: String?, endDate: String?) {
+        let formetter = Const.queryFormater
+        var rangeStartDate: String
+        var rangeEndDate: String
+        var settingsFetch = false
         
-        let rangeStartDate = "2009-09-11"
-        let rangeEndDate = "2010-03-10"
+        if startDate != nil && endDate != nil {
+            settingsFetch = true
+        }
+        
+        let today = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let sixMonthsAgo = calendar.dateByAddingUnit(.Month, value: -6, toDate: NSDate(), options: [])
+        
+        if startDate != nil {
+            rangeStartDate = startDate!
+        } else {
+            rangeStartDate = sixMonthsAgo!.dateStringWithFormatter(formetter)
+        }
+        
+        if endDate != nil {
+            rangeEndDate = endDate!
+        } else {
+            rangeEndDate = today.dateStringWithFormatter(formetter)
+        }
         
         downloadManager!.getCurrencyData(rangeStartDate, to: rangeEndDate, currency: currency!.name!) { (currencyValues, err) in
             if currencyValues != nil {
@@ -53,7 +77,10 @@ class DetailViewDataProvider: NSObject, DetailViewDataProviderProtocol {
                     arr.append(dailyValue)
                 }
                 
-                self.currencyValues = arr
+                if !arr.isEmpty {
+                    self.currencyValues = arr
+                    self.delegate?.setupChart(self.currencyValues!, setupFetch: settingsFetch)
+                }
                 
                 do {
                     try self.currency!.managedObjectContext!.save()

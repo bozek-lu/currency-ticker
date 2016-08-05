@@ -14,4 +14,5 @@ protocol MasterViewDataProviderProtocol: UITableViewDataSource {
     func fetchCoreData()
     func fetchWebData()
     func selectedCurrency() -> CurrencyEntity
+    func refreshEverything() 
 }

@@ -3,15 +3,18 @@ PODS:
   - Charts (2.2.5):
     - Charts/Core (= 2.2.5)
   - Charts/Core (2.2.5)
+  - DatePickerDialog (1.1.3)
 
 DEPENDENCIES:
   - Alamofire
   - Charts
+  - DatePickerDialog
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
+  DatePickerDialog: af729d1ea643d23f7976f10817234de6b030c361
 
-PODFILE CHECKSUM: 2ccbe6628e936255abbe07662e434b70c3bf1184
+PODFILE CHECKSUM: 7abc3d538ed554f10cf59c87321a7059371c0f27
 
 COCOAPODS: 1.0.1

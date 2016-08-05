@@ -12,13 +12,12 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var dataProvider: MasterViewDataProviderProtocol?
-
+    var favorites = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupController()
-        
         setupDataProvider()
     }
 
@@ -26,7 +25,13 @@ class MasterViewController: UITableViewController {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
         super.viewWillAppear(animated)
         
-//        dataProvider?.fetchWebData()
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let str = defaults.valueForKey(Const.reloadDataKey) as? Bool
+        
+        if str != nil {
+            dataProvider?.refreshEverything()
+            defaults.removeObjectForKey(Const.reloadDataKey)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,9 +48,8 @@ class MasterViewController: UITableViewController {
     }
     
     func setupController() {
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(insertNewObject(_:)))
-        self.navigationItem.rightBarButtonItem = addButton
+//        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        changerightBarButton()
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -53,9 +57,21 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(sender: AnyObject) {
-//        objects.insert(NSDate(), atIndex: 0)
-//        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-//        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        self.navigationItem.title = favorites ? "Favorites" : "All"
+        
+        changerightBarButton()
+    }
+    
+    func changerightBarButton() {
+        if favorites {
+            let changeButton = UIBarButtonItem(barButtonSystemItem: .Bookmarks, target: self, action: #selector(insertNewObject(_:)))
+            self.navigationItem.rightBarButtonItem = changeButton
+        } else {
+            let changeButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action:  #selector(insertNewObject(_:)))
+            navigationItem.rightBarButtonItem = changeButton
+        }
+        
+        favorites = !favorites
     }
 
     // MARK: - Segues
@@ -77,7 +93,7 @@ class MasterViewController: UITableViewController {
         header.contentView.backgroundColor = UIColor.whiteColor()
         header.textLabel?.textColor = UIColor.grayColor()
         header.textLabel?.font = UIFont.systemFontOfSize(12)
-        header.textLabel?.text = "Currency code and value based on USD"
+        header.textLabel?.text = "Currency value based on USD"
         header.textLabel?.textAlignment = .Center
         
         //header borders

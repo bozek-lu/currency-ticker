@@ -9,5 +9,5 @@
 import Foundation
 
 protocol DetailViewDataProviderDelegateProtocol: class {
-    func setupChart(currencyValues: [CurrencyDayValue])
+    func setupChart(currencyValues: [CurrencyDayValue], setupFetch: Bool)
 }

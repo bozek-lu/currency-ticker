@@ -22,7 +22,6 @@ class MasterViewDataProvider: NSObject, MasterViewDataProviderProtocol {
     var currencies: [CurrencyEntity] = []
     var downloadManager: DownloadManagerProtocol?
     let cellIdentifier = "Cell"
-    var fetchingInProgress = false
     
     //TODO: dependency injection
     lazy var managedObjectContext : NSManagedObjectContext = {
@@ -72,13 +71,22 @@ class MasterViewDataProvider: NSObject, MasterViewDataProviderProtocol {
         return currency
     }
     
+    func refreshEverything() {
+        currencies = []
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView?.reloadData()
+        }
+    }
 }
 
 //MARK: UITableViewDataSource
 extension MasterViewDataProvider: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView?.dequeueReusableCellWithIdentifier(cellIdentifier)
+        var cell = self.tableView?.dequeueReusableCellWithIdentifier(cellIdentifier)
+        if (cell == nil) {
+            cell = UITableViewCell(style: .Default, reuseIdentifier:cellIdentifier)
+        }
         let currency = currencies[indexPath.row]
         
         cell?.textLabel?.text = currency.name! + " " + "\(currency.mainRate)"
@@ -87,6 +95,10 @@ extension MasterViewDataProvider: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if currencies.count == 0 {
+            fetchWebData()
+        }
         
         return currencies.count
     }

@@ -14,18 +14,18 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
     @IBOutlet weak var baseChart: LineChartView!
+    @IBOutlet weak var selectedRangeChart: LineChartView!
     
-    var dataProvider: DetailViewDataProviderProtocol? {
-        didSet {
-            
-        }
-    }
+    var dataProvider: DetailViewDataProviderProtocol?
     
-    let amountOfPoints = 20
+    let amountOfPoints = 10
+    
+    let progressHUD = ProgressHUD(text: "Loading...")
 
     var detailItem: CurrencyEntity? {
         didSet {
             // Update the view.
+            self.navigationItem.title = detailItem?.name
             self.dataProvider = DetailViewDataProvider(currency: detailItem!, downloadManager: DownloadManager(), delegate: self)
         }
     }
@@ -34,13 +34,26 @@ class DetailViewController: UIViewController {
     
     
     override func viewDidAppear(animated: Bool) {
+        if detailItem != nil {
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let start = defaults.valueForKey(Const.startDateKey) as? String
+            let end = defaults.valueForKey(Const.endDateKey) as? String
+            if end != nil && start != nil {
+                dataProvider?.fetchValues(start!, endDate: end!)
+            }
+            
+            dataProvider?.fetchValues(nil, endDate: nil)
+        }
         
+        self.view.addSubview(progressHUD)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        let range = userDefault.valueForKey(Const.startDateKey) != nil
+        self.selectedRangeChart.noDataText = range ? "No data for currency in this range" : "Select range in settings to see chart"
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,8 +63,12 @@ class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: DetailViewDataProviderDelegateProtocol {
-    func setupChart(currencyValues: [CurrencyDayValue]) {
-        var dataEntries: [BarChartDataEntry] = []
+    func setupChart(currencyValues: [CurrencyDayValue], setupFetch: Bool) {
+        
+        baseChart.xAxis.labelPosition = .Bottom
+        selectedRangeChart.xAxis.labelPosition = .Bottom
+        
+        var dataEntries: [ChartDataEntry] = []
         var datePoints: [String] = []
         
         let iterator = currencyValues.count / amountOfPoints > 0 ? currencyValues.count / amountOfPoints : currencyValues.count
@@ -67,14 +84,29 @@ extension DetailViewController: DetailViewDataProviderDelegateProtocol {
             datePoints.append(date!)
             
             let value = currencyValues[i].rate
-            let dataEntry = BarChartDataEntry(value: value, xIndex: i)
+            let dataEntry = ChartDataEntry(value: value, xIndex: i)
             dataEntries.append(dataEntry)
             i += 1
         }
         
-        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Date")
-        let chartData = BarChartData(xVals: datePoints, dataSet: chartDataSet)
-        baseChart!.data = chartData
+        let text = setupFetch ? "Values change in year you selected" : "Currency value change over last 6 months"
+        let chartDataSet = LineChartDataSet(yVals: dataEntries, label: text)
+        let gradColors = [UIColor.cyanColor().CGColor, UIColor.clearColor().CGColor]
+        let colorLocations:[CGFloat] = [0.0, 1.0]
+        if let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradColors, colorLocations) {
+            chartDataSet.fill = ChartFill(linearGradient: gradient, angle: 90.0)
+        }
+//        chartDataSet.fillColor = UIColor.redColor()
+        let chartData = LineChartData(xVals: datePoints, dataSet: chartDataSet)
+        if setupFetch {
+            selectedRangeChart!.data = chartData
+            selectedRangeChart.animate(xAxisDuration: 2)
+        } else {
+            baseChart!.data = chartData
+            baseChart.animate(xAxisDuration: 2)
+        }
+        
+        progressHUD.removeFromSuperview()
     }
 }
 

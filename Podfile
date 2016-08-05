@@ -6,6 +6,7 @@ target ‘currency’ do
 
 pod ‘Alamofire’
 pod 'Charts'
+pod 'DatePickerDialog'
 
 end
 

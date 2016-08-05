@@ -33,13 +33,6 @@ class DetailViewController: UIViewController {
     var currencyValues: [CurrencyDayValue] = []
     
     
-
-//    func configureView() {
-//        // Update the user interface for the detail item.
-//
-//        }
-//    }
-    
     override func viewDidAppear(animated: Bool) {
         
     }
@@ -80,7 +73,7 @@ extension DetailViewController: DetailViewDataProviderDelegateProtocol {
         }
         
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Date")
-        let chartData = BarChartData(xVals: selectedValues, dataSet: chartDataSet)
+        let chartData = BarChartData(xVals: datePoints, dataSet: chartDataSet)
         baseChart!.data = chartData
     }
 }

@@ -44,6 +44,11 @@ class MasterViewDataProvider: NSObject, MasterViewDataProviderProtocol {
             try currencies = managedObjectContext.executeFetchRequest(fetchRequest) as! [CurrencyEntity]
         } catch {
             print(error)
+            return
+        }
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView?.reloadData()
         }
     }
 

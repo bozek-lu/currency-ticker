@@ -26,7 +26,7 @@ class MasterViewController: UITableViewController {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
         super.viewWillAppear(animated)
         
-        dataProvider?.fetchWebData()
+//        dataProvider?.fetchWebData()
     }
 
     override func didReceiveMemoryWarning() {

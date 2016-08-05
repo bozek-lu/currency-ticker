@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B85D91AFF9D8A4107351B92 /* Pods_currency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63F59F57F46D33CA29509D7 /* Pods_currency.framework */; };
+		891BE89B1D5315B100839983 /* currency.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 891BE8991D5315B100839983 /* currency.xcdatamodeld */; };
+		891BE8B81D5339E500839983 /* CurrencyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BE8B71D5339E500839983 /* CurrencyInfo.swift */; };
+		891BE8BA1D533FCE00839983 /* MasterViewDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BE8B91D533FCE00839983 /* MasterViewDataProvider.swift */; };
+		891BE8BD1D534BA100839983 /* MasterViewDataProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BE8BC1D534BA100839983 /* MasterViewDataProviderProtocol.swift */; };
+		891BE8BF1D534BF500839983 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BE8BE1D534BF500839983 /* DownloadManager.swift */; };
+		891BE8C11D534C1500839983 /* DownloadManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BE8C01D534C1500839983 /* DownloadManagerProtocol.swift */; };
+		891BE8C31D534CCE00839983 /* CurrencyDayValueInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BE8C21D534CCE00839983 /* CurrencyDayValueInfo.swift */; };
+		891BE8C61D53605500839983 /* CurrencyEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BE8C41D53605500839983 /* CurrencyEntity+CoreDataProperties.swift */; };
+		891BE8C71D53605500839983 /* CurrencyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BE8C51D53605500839983 /* CurrencyEntity.swift */; };
+		891BE8CA1D537ADB00839983 /* DetailViewDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BE8C91D537ADB00839983 /* DetailViewDataProvider.swift */; };
+		891BE8CC1D537B2700839983 /* DetailViewDataProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891BE8CB1D537B2700839983 /* DetailViewDataProviderProtocol.swift */; };
+		891BE8CE1D537CFF00839983 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 891BE8CD1D537CFF00839983 /* Charts.framework */; };
+		89309B411D5388AC002E03CC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89309B401D5388AC002E03CC /* Extensions.swift */; };
+		89309B431D539AD8002E03CC /* DetailViewDataProviderDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89309B421D539AD8002E03CC /* DetailViewDataProviderDelegateProtocol.swift */; };
+		89309B461D53A553002E03CC /* CurrencyDayValue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89309B441D53A553002E03CC /* CurrencyDayValue+CoreDataProperties.swift */; };
+		89309B471D53A553002E03CC /* CurrencyDayValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89309B451D53A553002E03CC /* CurrencyDayValue.swift */; };
 		89E263351D523180008E03D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E263341D523180008E03D5 /* AppDelegate.swift */; };
 		89E263371D523180008E03D5 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E263361D523180008E03D5 /* MasterViewController.swift */; };
 		89E263391D523180008E03D5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E263381D523180008E03D5 /* DetailViewController.swift */; };
@@ -16,6 +33,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		891BE89A1D5315B100839983 /* currency.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = currency.xcdatamodel; sourceTree = "<group>"; };
+		891BE8B71D5339E500839983 /* CurrencyInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyInfo.swift; sourceTree = "<group>"; };
+		891BE8B91D533FCE00839983 /* MasterViewDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewDataProvider.swift; sourceTree = "<group>"; };
+		891BE8BC1D534BA100839983 /* MasterViewDataProviderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewDataProviderProtocol.swift; sourceTree = "<group>"; };
+		891BE8BE1D534BF500839983 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		891BE8C01D534C1500839983 /* DownloadManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManagerProtocol.swift; sourceTree = "<group>"; };
+		891BE8C21D534CCE00839983 /* CurrencyDayValueInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyDayValueInfo.swift; sourceTree = "<group>"; };
+		891BE8C41D53605500839983 /* CurrencyEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CurrencyEntity+CoreDataProperties.swift"; path = "Model/CurrencyEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		891BE8C51D53605500839983 /* CurrencyEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrencyEntity.swift; path = Model/CurrencyEntity.swift; sourceTree = "<group>"; };
+		891BE8C91D537ADB00839983 /* DetailViewDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewDataProvider.swift; sourceTree = "<group>"; };
+		891BE8CB1D537B2700839983 /* DetailViewDataProviderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewDataProviderProtocol.swift; sourceTree = "<group>"; };
+		891BE8CD1D537CFF00839983 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../Library/Developer/Xcode/DerivedData/currency-avamjoeaevjlkwedbxgynqmoxvan/Build/Products/Debug-iphonesimulator/Charts/Charts.framework"; sourceTree = "<group>"; };
+		89309B401D5388AC002E03CC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		89309B421D539AD8002E03CC /* DetailViewDataProviderDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewDataProviderDelegateProtocol.swift; sourceTree = "<group>"; };
+		89309B441D53A553002E03CC /* CurrencyDayValue+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CurrencyDayValue+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		89309B451D53A553002E03CC /* CurrencyDayValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyDayValue.swift; sourceTree = "<group>"; };
 		89E263311D52317F008E03D5 /* currency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = currency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89E263341D523180008E03D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89E263361D523180008E03D5 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +57,9 @@
 		89E2633D1D523180008E03D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89E263401D523180008E03D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89E263421D523180008E03D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BED500A1F849BCFEAD227394 /* Pods-currency.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-currency.debug.xcconfig"; path = "Pods/Target Support Files/Pods-currency/Pods-currency.debug.xcconfig"; sourceTree = "<group>"; };
+		C63F59F57F46D33CA29509D7 /* Pods_currency.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_currency.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E915BAFC1846CDB94A2DCF69 /* Pods-currency.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-currency.release.xcconfig"; path = "Pods/Target Support Files/Pods-currency/Pods-currency.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +67,82 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				891BE8CE1D537CFF00839983 /* Charts.framework in Frameworks */,
+				5B85D91AFF9D8A4107351B92 /* Pods_currency.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A2011A98B18326AAA329B5E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BED500A1F849BCFEAD227394 /* Pods-currency.debug.xcconfig */,
+				E915BAFC1846CDB94A2DCF69 /* Pods-currency.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		40B79816C776F1130A4049A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				891BE8CD1D537CFF00839983 /* Charts.framework */,
+				C63F59F57F46D33CA29509D7 /* Pods_currency.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		891BE8981D53123300839983 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				891BE8BE1D534BF500839983 /* DownloadManager.swift */,
+				891BE8C01D534C1500839983 /* DownloadManagerProtocol.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		891BE8A61D53382300839983 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				891BE8B71D5339E500839983 /* CurrencyInfo.swift */,
+				891BE8C21D534CCE00839983 /* CurrencyDayValueInfo.swift */,
+				891BE8C41D53605500839983 /* CurrencyEntity+CoreDataProperties.swift */,
+				891BE8C51D53605500839983 /* CurrencyEntity.swift */,
+				89309B441D53A553002E03CC /* CurrencyDayValue+CoreDataProperties.swift */,
+				89309B451D53A553002E03CC /* CurrencyDayValue.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		891BE8BB1D534B7300839983 /* MasterView */ = {
+			isa = PBXGroup;
+			children = (
+				89E263361D523180008E03D5 /* MasterViewController.swift */,
+				891BE8B91D533FCE00839983 /* MasterViewDataProvider.swift */,
+				891BE8BC1D534BA100839983 /* MasterViewDataProviderProtocol.swift */,
+			);
+			name = MasterView;
+			sourceTree = "<group>";
+		};
+		891BE8C81D537AB600839983 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				89E263381D523180008E03D5 /* DetailViewController.swift */,
+				891BE8C91D537ADB00839983 /* DetailViewDataProvider.swift */,
+				891BE8CB1D537B2700839983 /* DetailViewDataProviderProtocol.swift */,
+				89309B421D539AD8002E03CC /* DetailViewDataProviderDelegateProtocol.swift */,
+			);
+			name = DetailView;
+			sourceTree = "<group>";
+		};
 		89E263281D52317F008E03D5 = {
 			isa = PBXGroup;
 			children = (
 				89E263331D523180008E03D5 /* currency */,
 				89E263321D52317F008E03D5 /* Products */,
+				0A2011A98B18326AAA329B5E /* Pods */,
+				40B79816C776F1130A4049A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,13 +157,17 @@
 		89E263331D523180008E03D5 /* currency */ = {
 			isa = PBXGroup;
 			children = (
+				891BE8C81D537AB600839983 /* DetailView */,
+				891BE8BB1D534B7300839983 /* MasterView */,
+				891BE8A61D53382300839983 /* Model */,
+				891BE8981D53123300839983 /* API */,
 				89E263341D523180008E03D5 /* AppDelegate.swift */,
-				89E263361D523180008E03D5 /* MasterViewController.swift */,
-				89E263381D523180008E03D5 /* DetailViewController.swift */,
 				89E2633A1D523180008E03D5 /* Main.storyboard */,
 				89E2633D1D523180008E03D5 /* Assets.xcassets */,
 				89E2633F1D523180008E03D5 /* LaunchScreen.storyboard */,
 				89E263421D523180008E03D5 /* Info.plist */,
+				891BE8991D5315B100839983 /* currency.xcdatamodeld */,
+				89309B401D5388AC002E03CC /* Extensions.swift */,
 			);
 			path = currency;
 			sourceTree = "<group>";
@@ -74,9 +179,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89E263451D523180008E03D5 /* Build configuration list for PBXNativeTarget "currency" */;
 			buildPhases = (
+				2D38B9ED1035833DE7685C1D /* [CP] Check Pods Manifest.lock */,
 				89E2632D1D52317F008E03D5 /* Sources */,
 				89E2632E1D52317F008E03D5 /* Frameworks */,
 				89E2632F1D52317F008E03D5 /* Resources */,
+				6780A87A0F7F71631DA19C1F /* [CP] Embed Pods Frameworks */,
+				913A55F09F0079D5E5F421D0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -133,14 +241,77 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2D38B9ED1035833DE7685C1D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6780A87A0F7F71631DA19C1F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-currency/Pods-currency-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		913A55F09F0079D5E5F421D0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-currency/Pods-currency-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		89E2632D1D52317F008E03D5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				891BE89B1D5315B100839983 /* currency.xcdatamodeld in Sources */,
 				89E263391D523180008E03D5 /* DetailViewController.swift in Sources */,
+				891BE8BF1D534BF500839983 /* DownloadManager.swift in Sources */,
+				891BE8B81D5339E500839983 /* CurrencyInfo.swift in Sources */,
+				891BE8CC1D537B2700839983 /* DetailViewDataProviderProtocol.swift in Sources */,
 				89E263371D523180008E03D5 /* MasterViewController.swift in Sources */,
+				891BE8BD1D534BA100839983 /* MasterViewDataProviderProtocol.swift in Sources */,
 				89E263351D523180008E03D5 /* AppDelegate.swift in Sources */,
+				891BE8C31D534CCE00839983 /* CurrencyDayValueInfo.swift in Sources */,
+				891BE8C61D53605500839983 /* CurrencyEntity+CoreDataProperties.swift in Sources */,
+				891BE8BA1D533FCE00839983 /* MasterViewDataProvider.swift in Sources */,
+				89309B431D539AD8002E03CC /* DetailViewDataProviderDelegateProtocol.swift in Sources */,
+				891BE8C11D534C1500839983 /* DownloadManagerProtocol.swift in Sources */,
+				89309B461D53A553002E03CC /* CurrencyDayValue+CoreDataProperties.swift in Sources */,
+				89309B411D5388AC002E03CC /* Extensions.swift in Sources */,
+				89309B471D53A553002E03CC /* CurrencyDayValue.swift in Sources */,
+				891BE8CA1D537ADB00839983 /* DetailViewDataProvider.swift in Sources */,
+				891BE8C71D53605500839983 /* CurrencyEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +424,7 @@
 		};
 		89E263461D523180008E03D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BED500A1F849BCFEAD227394 /* Pods-currency.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = currency/Info.plist;
@@ -265,6 +437,7 @@
 		};
 		89E263471D523180008E03D5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E915BAFC1846CDB94A2DCF69 /* Pods-currency.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = currency/Info.plist;
@@ -294,8 +467,22 @@
 				89E263471D523180008E03D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		891BE8991D5315B100839983 /* currency.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				891BE89A1D5315B100839983 /* currency.xcdatamodel */,
+			);
+			currentVersion = 891BE89A1D5315B100839983 /* currency.xcdatamodel */;
+			path = currency.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 89E263291D52317F008E03D5 /* Project object */;
 }

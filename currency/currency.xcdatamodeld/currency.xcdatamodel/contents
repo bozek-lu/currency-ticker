@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
+    <entity name="CurrencyDayValue" representedClassName=".CurrencyDayValue" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="currencyEntity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CurrencyEntity" inverseName="currencyDayValue" inverseEntity="CurrencyEntity" syncable="YES"/>
+    </entity>
+    <entity name="CurrencyEntity" representedClassName=".CurrencyEntity" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="mainRate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="currencyDayValue" toMany="YES" deletionRule="Nullify" destinationEntity="CurrencyDayValue" inverseName="currencyEntity" inverseEntity="CurrencyDayValue" spotlightIndexingEnabled="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CurrencyDayValue" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="CurrencyEntity" positionX="-54" positionY="18" width="128" height="120"/>
+    </elements>
+</model>

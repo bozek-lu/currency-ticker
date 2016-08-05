@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var baseChart: LineChartView!
     @IBOutlet weak var selectedRangeChart: LineChartView!
-    
+    var savedDate: String?
     var dataProvider: DetailViewDataProviderProtocol?
     
     let amountOfPoints = 10
@@ -34,18 +34,26 @@ class DetailViewController: UIViewController {
     
     
     override func viewDidAppear(animated: Bool) {
+        
         if detailItem != nil {
             let defaults = NSUserDefaults.standardUserDefaults()
             let start = defaults.valueForKey(Const.startDateKey) as? String
             let end = defaults.valueForKey(Const.endDateKey) as? String
+            
+            if savedDate != nil && start != nil && savedDate! == start! {
+                return
+            } else {
+                savedDate = start
+            }
+            
+            self.view.addSubview(progressHUD)
+            
             if end != nil && start != nil {
                 dataProvider?.fetchValues(start!, endDate: end!)
             }
             
             dataProvider?.fetchValues(nil, endDate: nil)
         }
-        
-        self.view.addSubview(progressHUD)
     }
     
     override func viewDidLoad() {
@@ -91,12 +99,7 @@ extension DetailViewController: DetailViewDataProviderDelegateProtocol {
         
         let text = setupFetch ? "Values change in year you selected" : "Currency value change over last 6 months"
         let chartDataSet = LineChartDataSet(yVals: dataEntries, label: text)
-        let gradColors = [UIColor.cyanColor().CGColor, UIColor.clearColor().CGColor]
-        let colorLocations:[CGFloat] = [0.0, 1.0]
-        if let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradColors, colorLocations) {
-            chartDataSet.fill = ChartFill(linearGradient: gradient, angle: 90.0)
-        }
-//        chartDataSet.fillColor = UIColor.redColor()
+        
         let chartData = LineChartData(xVals: datePoints, dataSet: chartDataSet)
         if setupFetch {
             selectedRangeChart!.data = chartData

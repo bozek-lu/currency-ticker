@@ -89,7 +89,7 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
+                    <navigationItem key="navigationItem" title="&lt;- Select currency" id="mOI-FS-AaM">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="Ilq-ak-1TP">
                             <connections>
                                 <segue destination="56c-Xg-5He" kind="show" id="vdQ-ay-86k"/>
@@ -215,7 +215,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="constraintFromIteratorToRangeSettings" destination="29J-qk-KJ8" id="7qY-3u-z1V"/>
                         <outlet property="iteratorTextField" destination="fQy-Zk-e4c" id="fPk-Bk-CnV"/>
                         <outlet property="startDate" destination="XQN-vw-XI2" id="433-aI-S0e"/>
                     </connections>

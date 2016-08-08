@@ -19,6 +19,12 @@ class MasterViewDataProvider: NSObject, MasterViewDataProviderProtocol {
         }
     }
     
+    var favorites: Bool = true {
+        didSet {
+            tableView?.reloadData()
+        }
+    }
+    
     var currencies: [CurrencyEntity] = []
     var downloadManager: DownloadManagerProtocol?
     let cellIdentifier = "Cell"
@@ -87,9 +93,15 @@ extension MasterViewDataProvider: UITableViewDataSource {
         if (cell == nil) {
             cell = UITableViewCell(style: .Default, reuseIdentifier:cellIdentifier)
         }
-        let currency = currencies[indexPath.row]
+
+        let currency = favorites ? currencies.filter { $0.isFavorite == true }[indexPath.row] : currencies[indexPath.row]
         
-        cell?.textLabel?.text = currency.name! + " " + "\(currency.mainRate)"
+        cell!.textLabel?.text = currency.name! + " " + "\(currency.mainRate)"
+        if currency.isFavorite && !favorites {
+            cell?.backgroundColor = UIColor.cyanColor()
+        } else {
+            cell?.backgroundColor = UIColor.clearColor()
+        }
         
         return cell!
     }
@@ -100,6 +112,29 @@ extension MasterViewDataProvider: UITableViewDataSource {
             fetchWebData()
         }
         
-        return currencies.count
+        let favoriteCount = currencies.filter { $0.isFavorite == true }.count
+        if favorites && favoriteCount == 0 {
+            let locale = NSLocale.currentLocale()
+            let currencyCode = locale.objectForKey(NSLocaleCurrencyCode)!
+            
+            let local = currencies.filter { $0.name! == currencyCode as! String }.first
+            if local != nil {
+                local!.isFavorite = true
+            }
+        }
+        
+        return favorites ? favoriteCount : currencies.count
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+
+        if editingStyle == .Delete {
+            currencies.filter { $0.isFavorite == true }[indexPath.row].isFavorite = false
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        } else if editingStyle == .Insert {
+            currencies[indexPath.row].isFavorite = true
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            cell?.backgroundColor = UIColor.cyanColor()
+        }
     }
 }

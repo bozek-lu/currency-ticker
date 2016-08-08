@@ -31,16 +31,6 @@ class DetailViewDataProvider: NSObject, DetailViewDataProviderProtocol {
         self.delegate = delegate
         self.currency = currency
         self.downloadManager = downloadManager
-//        if currency.currencyDayValue?.count == 0 {
-//            let defaults = NSUserDefaults.standardUserDefaults()
-//            let start = defaults.valueForKey(Const.startDateKey) as? String
-//            let end = defaults.valueForKey(Const.endDateKey) as? String
-//            if end != nil && start != nil {
-//                fetchValues(start!, endDate: end!)
-//            }
-//            
-//            fetchValues(nil, endDate: nil)
-//        }
     }
     
     func fetchValues(startDate: String?, endDate: String?) {

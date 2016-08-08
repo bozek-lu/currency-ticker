@@ -133,6 +133,8 @@ extension MasterViewDataProvider: UITableViewDataSource {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             currencies[indexPath.row].isFavorite = true
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            cell?.backgroundColor = UIColor.cyanColor()
         }
     }
 }

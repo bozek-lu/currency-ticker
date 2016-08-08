@@ -100,19 +100,6 @@ class MasterViewController: UITableViewController {
         header.textLabel?.font = UIFont.systemFontOfSize(12)
         header.textLabel?.text = "Currency value based on USD"
         header.textLabel?.textAlignment = .Center
-        
-        //header borders
-        let topBorder = CALayer()
-        topBorder.frame = CGRectMake(0, 0, header.frame.size.width, 1)
-        topBorder.backgroundColor = UIColor.grayColor().CGColor
-        
-        header.layer.addSublayer(topBorder)
-        
-        let bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(0, header.frame.size.height, header.frame.size.width, 1)
-        bottomBorder.backgroundColor = UIColor.grayColor().CGColor
-        
-        header.layer.addSublayer(bottomBorder)
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

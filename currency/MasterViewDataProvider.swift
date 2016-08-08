@@ -24,6 +24,7 @@ class MasterViewDataProvider: NSObject, MasterViewDataProviderProtocol {
             tableView?.reloadData()
         }
     }
+    
     var currencies: [CurrencyEntity] = []
     var downloadManager: DownloadManagerProtocol?
     let cellIdentifier = "Cell"
@@ -111,7 +112,18 @@ extension MasterViewDataProvider: UITableViewDataSource {
             fetchWebData()
         }
         
-        return favorites ? currencies.filter { $0.isFavorite == true }.count : currencies.count
+        let favoriteCount = currencies.filter { $0.isFavorite == true }.count
+        if favorites && favoriteCount == 0 {
+            let locale = NSLocale.currentLocale()
+            let currencyCode = locale.objectForKey(NSLocaleCurrencyCode)!
+            
+            let local = currencies.filter { $0.name! == currencyCode as! String }.first
+            if local != nil {
+                local!.isFavorite = true
+            }
+        }
+        
+        return favorites ? favoriteCount : currencies.count
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

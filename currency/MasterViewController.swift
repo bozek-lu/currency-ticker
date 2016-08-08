@@ -48,36 +48,37 @@ class MasterViewController: UITableViewController {
     }
     
     func setupController() {
-//        self.navigationItem.leftBarButtonItem = self.editButtonItem()
-        changerightBarButton()
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        let changeButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action:  #selector(changeList(_:)))
+        navigationItem.rightBarButtonItem = changeButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
     }
-
-    func insertNewObject(sender: AnyObject) {
+    
+    func changeList(sender: AnyObject) {
+        changeBarButtons()
         self.navigationItem.title = favorites ? "Favorites" : "All"
-        
-        changerightBarButton()
     }
     
-    func changerightBarButton() {
+    func changeBarButtons() {
         if favorites {
-            let changeButton = UIBarButtonItem(barButtonSystemItem: .Bookmarks, target: self, action: #selector(insertNewObject(_:)))
+            let changeButton = UIBarButtonItem(barButtonSystemItem: .Bookmarks, target: self, action: #selector(changeList(_:)))
             self.navigationItem.rightBarButtonItem = changeButton
         } else {
-            let changeButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action:  #selector(insertNewObject(_:)))
+            let changeButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action:  #selector(changeList(_:)))
             navigationItem.rightBarButtonItem = changeButton
         }
         
         favorites = !favorites
+        dataProvider?.favorites = favorites
     }
 
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == Const.masterToDetailSegueIdentifier {
             if self.tableView.indexPathForSelectedRow != nil {
                 let object = dataProvider!.selectedCurrency()
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
@@ -86,6 +87,10 @@ class MasterViewController: UITableViewController {
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier(Const.masterToDetailSegueIdentifier, sender: self)
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -116,15 +121,10 @@ class MasterViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return false
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if editingStyle == .Delete {
-//            objects.removeAtIndex(indexPath.row)
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//        } else if editingStyle == .Insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-//        }
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return favorites ? .Delete : .Insert
     }
 }

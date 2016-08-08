@@ -14,4 +14,5 @@ struct Const {
     static let queryFormater = "yyyy-MM-dd"
     static let reloadDataKey = "reloadData"
     static let iteratorKey = "iterator"
+    static let masterToDetailSegueIdentifier = "showDetail"
 }

@@ -75,6 +75,8 @@ extension DetailViewController: DetailViewDataProviderDelegateProtocol {
         
         baseChart.xAxis.labelPosition = .Bottom
         selectedRangeChart.xAxis.labelPosition = .Bottom
+        baseChart.descriptionText = ""
+        selectedRangeChart.descriptionText = ""
         
         var dataEntries: [ChartDataEntry] = []
         var datePoints: [String] = []
@@ -87,6 +89,7 @@ extension DetailViewController: DetailViewDataProviderDelegateProtocol {
         }
         
         var i = 0
+        selectedValues = selectedValues.reverse()
         for value in selectedValues {
             let date = value.date
             datePoints.append(date!)
@@ -97,7 +100,7 @@ extension DetailViewController: DetailViewDataProviderDelegateProtocol {
             i += 1
         }
         
-        let text = setupFetch ? "Values change in year you selected" : "Currency value change over last 6 months"
+        let text = setupFetch ? "Value change in year you selected" : "Currency value change over last 6 months"
         let chartDataSet = LineChartDataSet(yVals: dataEntries, label: text)
         
         let chartData = LineChartData(xVals: datePoints, dataSet: chartDataSet)

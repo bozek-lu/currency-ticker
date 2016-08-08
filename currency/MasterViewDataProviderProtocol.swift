@@ -11,6 +11,7 @@ import UIKit
 protocol MasterViewDataProviderProtocol: UITableViewDataSource {
     weak var tableView: UITableView? {get set}
     var downloadManager: DownloadManagerProtocol?  {get set}
+    var favorites: Bool {get set}
     func fetchCoreData()
     func fetchWebData()
     func selectedCurrency() -> CurrencyEntity

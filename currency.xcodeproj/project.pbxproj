@@ -145,6 +145,7 @@
 		89483ACA1D54C84A000EF899 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				89309B401D5388AC002E03CC /* Extensions.swift */,
 				89483AC51D548E31000EF899 /* Constants.swift */,
 				89483ACB1D54C863000EF899 /* ProgressHud.swift */,
 			);
@@ -184,7 +185,6 @@
 				89E263421D523180008E03D5 /* Info.plist */,
 				89483AC71D549359000EF899 /* SettingsViewController.swift */,
 				891BE8991D5315B100839983 /* currency.xcdatamodeld */,
-				89309B401D5388AC002E03CC /* Extensions.swift */,
 			);
 			path = currency;
 			sourceTree = "<group>";

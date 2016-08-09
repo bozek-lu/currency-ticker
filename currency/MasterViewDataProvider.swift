@@ -58,10 +58,16 @@ class MasterViewDataProvider: NSObject, MasterViewDataProviderProtocol {
     }
 
     func fetchWebData() {
+        
+        let tempFavorites = currencies.filter { $0.isFavorite == true }.map { $0.name }
         downloadManager?.getAvailableCurrencies({ (currencyList, err) in
+            
             if currencyList != nil && !currencyList!.isEmpty {
+                self.currencies = []
                 for currency in currencyList! {
                     let currency = CurrencyEntity(currencyInfo: currency, entity: self.entity, insertIntoManagedObjectContext: self.managedObjectContext)
+                    currency.isFavorite = tempFavorites.filter {$0 == currency.name}.count > 0
+
                     self.currencies.append(currency)
                 }
                 
@@ -96,7 +102,10 @@ extension MasterViewDataProvider: UITableViewDataSource {
 
         let currency = favorites ? currencies.filter { $0.isFavorite == true }[indexPath.row] : currencies[indexPath.row]
         
-        cell!.textLabel?.text = currency.name! + " " + "\(currency.mainRate)"
+        if currency.name != nil {
+            cell!.textLabel?.text = currency.name! + " " + "\(currency.mainRate)"
+        }
+
         if currency.isFavorite && !favorites {
             cell?.backgroundColor = UIColor.cyanColor()
         } else {

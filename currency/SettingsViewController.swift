@@ -41,26 +41,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDel.managedObjectContext
         
-        context.performBlock {
-            var error: NSError?
-            context.deleteAllObjects(&error)
-            
-            if error == nil {
-                context.performBlockAndWait {
-                    do {
-                        try context.save()
-                        let defaults = NSUserDefaults.standardUserDefaults()
-                        defaults.setBool(true, forKey: Const.reloadDataKey)
-                    } catch {
-                        print("Error deleting all objects: \(error)")
-                    }
-                }
-            }
-            
-            if let error = error {
-                print("Error deleting all objects: \(error)")
-            }
-        }
+        context.performDataRemoving()
+
     }
     
     @IBAction func editStartDate(sender: AnyObject) {

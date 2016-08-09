@@ -35,11 +35,36 @@ extension String {
 }
 
 extension NSManagedObjectContext {
+    
+    
+    func performDataRemoving() {
+        self.performBlock {
+            var error: NSError?
+            self.deleteAllObjects(&error)
+            
+            if error == nil {
+                self.performBlockAndWait {
+                    do {
+                        try self.save()
+                        let defaults = NSUserDefaults.standardUserDefaults()
+                        defaults.setBool(true, forKey: Const.reloadDataKey)
+                    } catch {
+                        print("Error deleting all objects: \(error)")
+                    }
+                }
+            }
+            
+            if let error = error {
+                print("Error deleting all objects: \(error)")
+            }
+        }
+    }
+    
     func deleteAllObjects(error: NSErrorPointer) {
         
         if let entitesByName = persistentStoreCoordinator?.managedObjectModel.entitiesByName {
             
-            for (name, entityDescription) in entitesByName {
+            for (_, entityDescription) in entitesByName {
                 deleteAllObjectsForEntity(entityDescription, error: error)
                 
                 // If there's a problem, bail on the whole operation.

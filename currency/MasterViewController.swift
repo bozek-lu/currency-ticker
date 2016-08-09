@@ -39,6 +39,11 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func refreshAction(sender: AnyObject) {
+        dataProvider?.fetchWebData()
+        refreshControl?.endRefreshing()
+    }
+    
     func setupDataProvider() {
         dataProvider = MasterViewDataProvider()
         let downloadManager = DownloadManager()
